@@ -38,7 +38,7 @@ footer, header, hgroup, main, menu, nav, section {
 body {
   line-height: 1;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   box-sizing: border-box;
   background: #01012a;
 
@@ -78,7 +78,7 @@ const Title = styled.h1`
 	color: #fff;
 	font-size: 32px;
 	font-weight: 700;
-	margin-bottom: 20px;
+	margin: 20px;
 `;
 
 const Error = styled(Loading)``;

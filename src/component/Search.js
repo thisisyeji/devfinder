@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { IoSearch } from 'react-icons/io5';
 
 const Form = styled.form`
-	min-width: 500px;
 	height: 40px;
 	background-color: #33336d;
 	border: none;
@@ -41,6 +40,7 @@ const Form = styled.form`
 			border-bottom: 1px solid #fff;
 		}
 	}
+
 	input[type='submit'] {
 		width: 100px;
 		height: 100%;
@@ -57,6 +57,11 @@ const Form = styled.form`
 			background: #fff;
 			color: #33336d;
 		}
+	}
+
+	@media screen and (max-width: 600px) {
+		max-width: 90vw;
+		margin: 5vw auto;
 	}
 `;
 

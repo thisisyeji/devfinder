@@ -11,6 +11,17 @@ const Card = styled.article`
 
 	display: flex;
 	gap: 20px;
+
+	@media screen and (max-width: 600px) {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		width: 90vw;
+		margin: 5vw auto;
+		padding: 20px 10px;
+	}
 `;
 
 const UserAvatar = styled.div`
@@ -22,6 +33,10 @@ const UserAvatar = styled.div`
 	img {
 		width: 100%;
 		height: 100%;
+	}
+
+	@media screen and (max-width: 600px) {
+		margin-top: 20px;
 	}
 `;
 
@@ -54,6 +69,26 @@ const UserInfo = styled.div`
 		font-size: 20px;
 		text-align: center;
 	}
+
+	@media screen and (max-width: 600px) {
+		max-width: 90vw;
+		margin: 5vw 0;
+		padding-left: 0;
+
+		.title {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 0;
+			margin-bottom: 30px;
+
+			.name {
+				margin-bottom: 30px;
+				text-align: center;
+			}
+		}
+	}
 `;
 
 const NumLists = styled.ul`
@@ -75,6 +110,11 @@ const NumLists = styled.ul`
 			font-size: 20px;
 			font-weight: 700;
 		}
+	}
+
+	@media screen and (max-width: 600px) {
+		margin: 5vw auto;
+		padding: 20px;
 	}
 `;
 
@@ -120,7 +160,7 @@ const Info = ({ info }) => {
 						<span>{info.name}</span>
 					</div>
 
-					<span>
+					<span className='date'>
 						Joined {info.created_at ? info.created_at.split('T')[0] : ''}
 					</span>
 				</div>
