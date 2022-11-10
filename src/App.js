@@ -1,6 +1,5 @@
-import Header from '../../component/Header';
-import Search from '../../component/Search';
-import Info from '../../component/Info';
+import Search from './component/Search';
+import Info from './component/Info';
 import axios from 'axios';
 import { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
@@ -75,18 +74,30 @@ const Loading = styled.p`
 	margin-top: 30px;
 `;
 
+const Title = styled.h1`
+	color: #fff;
+	font-size: 32px;
+	font-weight: 700;
+	margin-bottom: 20px;
+`;
+
+const Error = styled(Loading)``;
+
 function App() {
 	const [info, setInfo] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState(false);
 
 	const onSearch = async (username) => {
 		if (!username.trim()) return alert('이름을 입력하세요.');
 		setIsLoading(true);
+		setError(false);
 		try {
 			const res = await axios.get(`https://api.github.com/users/${username}`);
 			setInfo(res.data);
 		} catch {
 			setInfo('');
+			setError(true);
 		} finally {
 			setIsLoading(false);
 		}
@@ -97,13 +108,15 @@ function App() {
 			<GlobalStyle />
 
 			<section>
-				<Header />
+				<Title>devfinder</Title>
 				<Search onSearch={onSearch} />
 				{isLoading ? (
 					<Loading>Loading...</Loading>
 				) : (
 					info && <Info info={info} />
 				)}
+
+				{error && <Error>Oops! No data.</Error>}
 			</section>
 		</>
 	);
