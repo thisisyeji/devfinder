@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { IoSearch } from 'react-icons/io5';
 
 const Form = styled.form`
+	min-width: 500px;
 	height: 40px;
-	background-color: #33336d;
+	background-color: ${(props) => props.theme.bg};
 	border: none;
 	border-radius: 10px;
 	margin-bottom: 20px;
@@ -15,7 +16,7 @@ const Form = styled.form`
 
 	label {
 		font-size: 24px;
-		color: #fff;
+		color: ${(props) => props.theme.text};
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -25,7 +26,7 @@ const Form = styled.form`
 	input[type='text'] {
 		width: 75%;
 		height: 100%;
-		color: #fff;
+		color: ${(props) => props.theme.text};
 		background: transparent;
 		outline: none;
 		border: none;
@@ -37,7 +38,7 @@ const Form = styled.form`
 		&:active,
 		&:hover {
 			background: transparent;
-			border-bottom: 1px solid #fff;
+			border-bottom: 1px solid ${(props) => props.theme.text};
 		}
 	}
 
@@ -54,12 +55,13 @@ const Form = styled.form`
 		transition: 0.5s;
 
 		&:hover {
-			background: #fff;
-			color: #33336d;
+			background: ${(props) => props.theme.text};
+			color: ${(props) => props.theme.body};
 		}
 	}
 
 	@media screen and (max-width: 600px) {
+		min-width: 90vw;
 		max-width: 90vw;
 		margin: 5vw auto;
 	}

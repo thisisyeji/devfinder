@@ -2,8 +2,10 @@ import Search from './component/Search';
 import Info from './component/Info';
 import axios from 'axios';
 import { useState } from 'react';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
+import { lightTheme, darkTheme } from './themes';
+import { BsMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
 
 const GlobalStyle = createGlobalStyle`
 	html, body, div, span, applet, object, iframe,
@@ -40,11 +42,14 @@ body {
   width: 100vw;
   min-height: 100vh;
   box-sizing: border-box;
-  background: #01012a;
+  background: ${({ theme }) => theme.body};
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  font-family: 'Ubuntu', sans-serif;
+
 }
 menu, ol, ul {
   list-style: none;
@@ -68,17 +73,37 @@ text-decoration: none;
 `;
 
 const Loading = styled.p`
-	color: #fff;
+	color: ${({ theme }) => theme.text};
 	text-align: center;
 	font-size: 24px;
 	margin-top: 30px;
 `;
 
-const Title = styled.h1`
-	color: #fff;
-	font-size: 32px;
-	font-weight: 700;
-	margin: 20px;
+const Header = styled.div`
+	position: relative;
+
+	h1 {
+		color: ${({ theme }) => theme.text};
+		font-size: 32px;
+		font-weight: 700;
+		margin: 20px;
+	}
+
+	button {
+		color: ${({ theme }) => theme.text};
+		font-size: 20px;
+		border: none;
+		background: none;
+		position: absolute;
+		top: 0;
+		right: 20px;
+		transition: 0.5s;
+		cursor: pointer;
+
+		&:hover {
+			transform: rotate(-40deg);
+		}
+	}
 `;
 
 const Error = styled(Loading)``;
@@ -87,6 +112,10 @@ function App() {
 	const [info, setInfo] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(false);
+	const [theme, setTheme] = useState('light');
+	const isDarkMode = theme === 'dark';
+
+	const onDark = () => setTheme(isDarkMode ? 'light' : 'dark');
 
 	const onSearch = async (username) => {
 		if (!username.trim()) return alert('이름을 입력하세요.');
@@ -105,19 +134,26 @@ function App() {
 
 	return (
 		<>
-			<GlobalStyle />
+			<ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+				<GlobalStyle />
+				<section>
+					<Header>
+						<h1>devfinder</h1>
+						<button onClick={() => onDark()}>
+							{isDarkMode ? <BsFillSunFill /> : <BsMoonStarsFill />}
+						</button>
+					</Header>
 
-			<section>
-				<Title>devfinder</Title>
-				<Search onSearch={onSearch} />
-				{isLoading ? (
-					<Loading>Loading...</Loading>
-				) : (
-					info && <Info info={info} />
-				)}
+					<Search onSearch={onSearch} />
+					{isLoading ? (
+						<Loading>Loading...</Loading>
+					) : (
+						info && <Info info={info} />
+					)}
 
-				{error && <Error>Oops! No data.</Error>}
-			</section>
+					{error && <Error>Oops! No data.</Error>}
+				</section>
+			</ThemeProvider>
 		</>
 	);
 }

@@ -5,7 +5,7 @@ import { FaMapMarkerAlt, FaTwitter, FaLink, FaBuilding } from 'react-icons/fa';
 const Card = styled.article`
 	max-width: 500px;
 	height: 100%;
-	background-color: #33336d;
+	background-color: ${(props) => props.theme.bg};
 	border-radius: 10px;
 	padding: 40px;
 
@@ -43,7 +43,7 @@ const UserAvatar = styled.div`
 const UserInfo = styled.div`
 	width: 340px;
 	padding-left: 10px;
-	color: #999;
+	color: ${(props) => props.theme.textSmall};
 
 	.title {
 		display: flex;
@@ -54,20 +54,27 @@ const UserInfo = styled.div`
 			margin-bottom: 30px;
 			h2 {
 				font-size: 36px;
+				font-weight: 600;
 				margin-bottom: 20px;
-				color: #fff;
+				color: ${(props) => props.theme.text};
 			}
 		}
 
 		span {
 			font-style: italic;
 		}
+
+		.date {
+			font-size: 14px;
+		}
 	}
 
 	.bio {
-		color: #fff;
+		background: ${(props) => props.theme.text};
+		color: ${(props) => props.theme.body};
 		font-size: 20px;
 		text-align: center;
+		padding: 10px;
 	}
 
 	@media screen and (max-width: 600px) {
@@ -92,8 +99,8 @@ const UserInfo = styled.div`
 `;
 
 const NumLists = styled.ul`
-	background: #020243;
-	color: #d7d7d7;
+	background: ${(props) => props.theme.box};
+	color: ${(props) => props.theme.text};
 	border-radius: 10px;
 	display: flex;
 	justify-content: space-between;
@@ -103,7 +110,7 @@ const NumLists = styled.ul`
 	li {
 		display: flex;
 		flex-direction: column;
-		gap: 5px;
+		gap: 10px;
 		font-size: 14px;
 
 		strong {
@@ -119,7 +126,7 @@ const NumLists = styled.ul`
 `;
 
 const AddressLists = styled.ul`
-	color: #d7d7d7;
+	color: ${(props) => props.theme.text};
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
