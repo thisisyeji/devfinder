@@ -1,7 +1,7 @@
 import Search from './component/Search';
 import Info from './component/Info';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
 import { lightTheme, darkTheme } from './themes';
@@ -112,7 +112,17 @@ function App() {
 	const [info, setInfo] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(false);
-	const [theme, setTheme] = useState('light');
+
+	const getDark = () => {
+		const mode = localStorage.getItem('mode');
+		if (mode) {
+			return JSON.parse(mode);
+		} else {
+			return 'light';
+		}
+	};
+
+	const [theme, setTheme] = useState(getDark());
 	const isDarkMode = theme === 'dark';
 
 	const onDark = () => setTheme(isDarkMode ? 'light' : 'dark');
@@ -131,6 +141,10 @@ function App() {
 			setIsLoading(false);
 		}
 	};
+
+	useEffect(() => {
+		localStorage.setItem('mode', JSON.stringify(theme));
+	}, [theme]);
 
 	return (
 		<>

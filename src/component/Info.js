@@ -48,13 +48,14 @@ const UserInfo = styled.div`
 	.title {
 		display: flex;
 		justify-content: space-between;
-		gap: 50px;
+		gap: 30px;
 
 		.name {
 			margin-bottom: 30px;
 			h2 {
 				font-size: 36px;
 				font-weight: 600;
+				letter-spacing: 2px;
 				margin-bottom: 20px;
 				color: ${(props) => props.theme.text};
 			}
@@ -73,6 +74,7 @@ const UserInfo = styled.div`
 		background: ${(props) => props.theme.text};
 		color: ${(props) => props.theme.body};
 		font-size: 20px;
+		letter-spacing: 1px;
 		text-align: center;
 		padding: 10px;
 	}
@@ -135,6 +137,7 @@ const AddressLists = styled.ul`
 		width: calc(50% - 20px);
 		margin: 10px;
 		word-break: break-all;
+		line-height: 1.2;
 
 		display: flex;
 		justify-content: flex-start;
