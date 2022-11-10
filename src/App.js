@@ -38,7 +38,7 @@ footer, header, hgroup, main, menu, nav, section {
 body {
   line-height: 1;
   width: 100vw;
-  height: 100%;
+  min-height: 100vh;
   box-sizing: border-box;
   background: #01012a;
 
